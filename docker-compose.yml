@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+
+### NODE #############################
+  react_container:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: "react-slider-test_container"
+    user: "node"
+    working_dir: "/home/node/app"
+    volumes:
+      - ./:/home/node/app
+    ports:
+      - "8080:8080"
+    command: "npm run start:dev"

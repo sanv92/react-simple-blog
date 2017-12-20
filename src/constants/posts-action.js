@@ -1,0 +1,8 @@
+export const FETCH_POSTS = 'FETCH_POSTS'
+export const FETCH_POST = 'FETCH_POST'
+
+export const CREATE_POST = 'CREATE_POST'
+export const SUCCESS_POST = 'SUCCESS_POST'
+export const FAILURE_POST = 'FAILURE_POST'
+export const RESET_NEW_POST = 'RESET_NEW_POST'
+export const RESET_CURRENT_POST = 'RESET_CURRENT_POST'
