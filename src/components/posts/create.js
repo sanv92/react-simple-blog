@@ -19,9 +19,9 @@ class PostsCreate extends Component {
       <div className="form-group">
         <label htmlFor={label}>
           <span className="font-weight-bold">{label}</span>
-          <input id={label} {...input} type={type} className="form-control" placeholder={placeholder} />
-          {touched && ((error && <small className="form-text text-muted">{error}</small>))}
         </label>
+        <input id={label} {...input} type={type} className="form-control" placeholder={placeholder} />
+        {touched && ((error && <small className="form-text text-muted">{error}</small>))}
       </div>
       <hr />
     </div>
