@@ -47,7 +47,7 @@ const PrimaryLayout = () => (
 
     <footer className="footer" role="contentinfo">
       <div className="container text-center">
-        <span className="text-muted">Place sticky footer content here.</span>
+        <span className="text-muted">Footer content</span>
       </div>
     </footer>
   </div>
