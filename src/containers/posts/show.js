@@ -14,7 +14,7 @@ const mapDispatchToProps = dispatch => (
 )
 
 const mapStateToProps = ({ posts }) => ({
-  post: posts.activePost,
+  ...posts.activePost,
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostShow)

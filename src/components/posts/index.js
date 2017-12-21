@@ -17,16 +17,18 @@ class PostsList extends Component {
   );
 
   render() {
-    const { posts } = this.props.posts
-    const { data } = posts
+    const { posts, loading } = this.props
 
-    if (!data || data.length <= 0) {
+    if (loading) {
       return <LoadingSpinner />
+    }
+    else if (!posts) {
+      return <span />
     }
 
     return (
       <ul className="list-group">
-        {this.renderPosts(data)}
+        {this.renderPosts(posts)}
       </ul>
     )
   }

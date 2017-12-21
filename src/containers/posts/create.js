@@ -1,13 +1,10 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
-import { reduxForm, SubmissionError } from 'redux-form'
+import { reduxForm } from 'redux-form'
 
 import PostsCreate from 'components/posts/create'
-import { createPost, createPostSuccess, createPostFailure, resetNewPost } from 'actions/posts-action'
+import { createPost, resetNewPost } from 'actions/posts-action'
 
-
-const responseStatus = 200
-const responseTimer = 1500
 
 const validate = (values) => {
   const errors = {title: null, categories: null, content: null}
@@ -34,17 +31,7 @@ const mapDispatchToProps = dispatch => ({
     dispatch(resetNewPost())
   },
 
-  validateAndCreatePost: values => dispatch(createPost(values))
-    .then((response) => {
-      setTimeout(() => { // TODO: loading bar example
-        if (response.payload.response && response.payload.response.status !== responseStatus) {
-          dispatch(createPostFailure(response.payload.response.data))
-          throw new SubmissionError(response.payload.response.data)
-        }
-
-        dispatch(createPostSuccess(response.payload.data))
-      }, responseTimer)
-    }),
+  validateAndCreatePost: values => dispatch(createPost(values)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(reduxForm({

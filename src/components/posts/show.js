@@ -15,13 +15,16 @@ class PostShow extends Component {
   }
 
   render() {
-    const { post } = this.props
+    const { post, loading } = this.props
 
-    if (!post.posts) {
+    if (loading) {
       return <LoadingSpinner />
     }
+    else if (!post) {
+      return <span />
+    }
 
-    const { title, categories, content } = post.posts.data
+    const { title, categories, content } = post
 
     return (
       <div>

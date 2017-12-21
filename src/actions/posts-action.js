@@ -3,37 +3,94 @@ import * as types from 'constants/posts-action'
 
 
 const ROOT_URL = 'http://reduxblog.herokuapp.com/api'
-const API_KEY = '?key=diownf0ewcdw'
+const API_KEY = '?key=diownf0ewcdw1'
 
-export const fetchPosts = () => ({
-  type: types.FETCH_POSTS,
-  payload: axios.get(`${ROOT_URL}/posts${API_KEY}`),
-})
+export const fetchPosts = () => (
+  (dispatch) => {
+    dispatch({
+      type: types.FETCH_POSTS,
+    })
 
-export const fetchPost = id => ({
-  type: types.FETCH_POST,
-  payload: axios.get(`${ROOT_URL}/posts/${id}${API_KEY}`),
-})
+    axios.get(`${ROOT_URL}/posts${API_KEY}`)
+      .then((response) => {
+        const responseStatus = 200
+
+        if (response && response.status !== responseStatus) {
+          dispatch({
+            type: types.FAILURE_POSTS,
+            payload: response.data,
+          })
+        }
+        else {
+          dispatch({
+            type: types.SUCCESS_POSTS,
+            payload: response.data,
+          })
+        }
+      })
+  }
+)
+
+export const fetchPost = id => (
+  (dispatch) => {
+    dispatch({
+      type: types.FETCH_POST,
+    })
+
+    axios.get(`${ROOT_URL}/posts/${id}${API_KEY}`)
+      .then((response) => {
+        const responseStatus = 200
+
+        if (response && response.status !== responseStatus) {
+          dispatch({
+            type: types.FAILURE_POST,
+            payload: response.data,
+          })
+        }
+        else {
+          dispatch({
+            type: types.SUCCESS_POST,
+            payload: response.data,
+          })
+        }
+      })
+  }
+)
 
 export const resetActivePost = () => ({
   type: types.RESET_CURRENT_POST,
 })
 
 
-export const createPost = props => ({
-  type: types.CREATE_POST,
-  payload: axios.post(`${ROOT_URL}/posts${API_KEY}`, props),
-})
+export const createPost = values => (
+  (dispatch) => {
+    dispatch({
+      type: types.CREATE_NEW_POST,
+    })
 
-export const createPostSuccess = activePost => ({
-  type: types.SUCCESS_POST,
-  payload: activePost,
-})
+    axios.post(`${ROOT_URL}/posts${API_KEY}`, values)
+      .then((response) => {
+        const responseStatus = 201
+        const responseTimer = 1500
 
-export const createPostFailure = error => ({
-  type: types.FAILURE_POST,
-  payload: error,
-})
+        // TODO: loading bar example
+        setTimeout(() => {
+          if (response && response.status !== responseStatus) {
+            dispatch({
+              type: types.FAILURE_NEW_POST,
+              payload: response.data,
+            })
+          }
+          else {
+            dispatch({
+              type: types.SUCCESS_NEW_POST,
+              payload: response.data,
+            })
+          }
+        }, responseTimer)
+      })
+  }
+)
 
 export const resetNewPost = () => ({
   type: types.RESET_NEW_POST,

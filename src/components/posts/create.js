@@ -2,19 +2,13 @@ import React, { Component } from 'react'
 import { Field } from 'redux-form'
 import { Redirect } from 'react-router-dom'
 
-import { createPost, createPostSuccess, createPostFailure, resetNewPost } from 'actions/posts-action'
-
 
 class PostsCreate extends Component {
   componentWillUnmount() {
     this.props.resetForm()
   }
 
-  callTest = (values) => {
-    this.props.validateAndCreatePost(values)
-  };
-
-  renderField = ({ input, label, type, placeholder, meta: { touched, error, warning }}) => (
+  renderField = ({ input, label, type, placeholder, meta: { touched, error }}) => (
     <div>
       <div className="form-group">
         <label htmlFor={label}>
@@ -47,9 +41,9 @@ class PostsCreate extends Component {
 
     return (
       <div>
-        { this.renderError(newPost) }
+        {this.renderError(newPost)}
 
-        <form onSubmit={handleSubmit(values => this.callTest(values))}>
+        <form onSubmit={handleSubmit(values => this.props.validateAndCreatePost(values))}>
           <div>
             <Field
               name="title"
@@ -80,11 +74,10 @@ class PostsCreate extends Component {
             />
           </div>
 
-          {newPost.loading === true
+          {newPost.loading
           ? (
             <button type="subimt" className="btn btn-primary" disabled>
-              <i className="fa fa-circle-o-notch fa-spin" />
-              Submit
+              <i className="fa fa-circle-o-notch fa-spin" /> Submit
             </button>
             )
           : <button type="subimt" className="btn btn-primary" disabled={submitting}>Submit</button>}
