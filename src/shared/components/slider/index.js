@@ -33,9 +33,9 @@ class Slider extends Component {
 
     goToPreviousSlide = () => {
       this.setState({
-        activeSlide: (this.state.activeSlide === 0)
-          && this.state.images.length - 1
-          || this.state.activeSlide - 1,
+        activeSlide: this.state.activeSlide - 1 < 0
+          ? this.state.images.length - 1
+          : this.state.activeSlide - 1,
         prevSlide: this.state.activeSlide,
         show: !this.state.show,
       })
@@ -44,7 +44,9 @@ class Slider extends Component {
 
     goToNextSlide = () => {
       this.setState({
-        activeSlide: (this.state.activeSlide + 1) % this.state.images.length,
+        activeSlide: this.state.activeSlide + 1 < this.state.images.length
+          ? this.state.activeSlide + 1
+          : 0,
         prevSlide: this.state.activeSlide,
         show: !this.state.show,
       })

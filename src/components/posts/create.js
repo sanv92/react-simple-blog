@@ -77,7 +77,8 @@ class PostsCreate extends Component {
           {newPost.loading
           ? (
             <button type="subimt" className="btn btn-primary" disabled>
-              <i className="fa fa-circle-o-notch fa-spin" /> Submit
+              <i className="fa fa-circle-o-notch fa-spin" />{' '}
+              Submit
             </button>
             )
           : <button type="subimt" className="btn btn-primary" disabled={submitting}>Submit</button>}
