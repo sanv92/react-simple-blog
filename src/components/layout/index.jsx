@@ -39,7 +39,12 @@ const PrimaryLayout = () => (
             </Switch>
           </div>
           <aside className="col-12 col-sm-4" role="complementary">
-            <Slider />
+            <Slider animation="fade">
+              <img src="/dist/images/slides/animals.svg" alt="animals" />
+              <img src="/dist/images/slides/fish.svg" alt="fish" />
+              <img src="/dist/images/slides/landscape.svg" alt="landscape" />
+              <img src="/dist/images/slides/witch.svg" alt="witch" />
+            </Slider>
           </aside>
         </div>
       </div>

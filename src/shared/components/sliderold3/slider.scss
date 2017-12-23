@@ -1,4 +1,4 @@
-.slider {
+#slider {
   width: 100%;
   display: inline-block;
   position: relative;
@@ -10,8 +10,6 @@
       width: 100%;
       top: 0;
       position: relative;
-
-      // fade
       &.fade-enter {
         opacity: 0;
         position: absolute;
@@ -28,7 +26,6 @@
         opacity: 0;
         transition: 1s ease-out all;
       }
-
     }
   }
 
