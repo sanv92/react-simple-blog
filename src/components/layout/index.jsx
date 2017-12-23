@@ -45,6 +45,18 @@ const PrimaryLayout = () => (
               <img src="/dist/images/slides/landscape.svg" alt="landscape" />
               <img src="/dist/images/slides/witch.svg" alt="witch" />
             </Slider>
+            <Slider animation="fade">
+              <img src="/dist/images/slides/fish.svg" alt="fish" />
+              <img src="/dist/images/slides/landscape.svg" alt="landscape" />
+              <img src="/dist/images/slides/witch.svg" alt="witch" />
+              <img src="/dist/images/slides/animals.svg" alt="animals" />
+            </Slider>
+            <Slider animation="fade">
+              <img src="/dist/images/slides/landscape.svg" alt="landscape" />
+              <img src="/dist/images/slides/witch.svg" alt="witch" />
+              <img src="/dist/images/slides/animals.svg" alt="animals" />
+              <img src="/dist/images/slides/fish.svg" alt="fish" />
+            </Slider>
           </aside>
         </div>
       </div>
