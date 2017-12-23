@@ -44,17 +44,22 @@
     text-align: center;
     margin: auto;
 
-    button.slider-navigation-button__left{
-      float: left;
+    button.slider-navigation-button__left,
+    button.slider-navigation-button__right {
       background-color: transparent;
       border: none;
       color: #007aff;
+      outline: none;
+      &:hover {
+        color: #56a4f9;
+        cursor: pointer;
+      }
     }
-    button.slider-navigation-button__right{
+    button.slider-navigation-button__left {
+      float: left;
+    }
+    button.slider-navigation-button__right {
       float: right;
-      background-color: transparent;
-      border: none;
-      color: #007aff;
     }
   }
 }
