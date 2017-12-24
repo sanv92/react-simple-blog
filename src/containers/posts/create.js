@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { reduxForm } from 'redux-form'
+import { withRouter } from 'react-router'
 
 import PostsCreate from 'components/posts/create'
 import { createPost, resetNewPost } from 'actions/posts-action'
@@ -31,11 +32,11 @@ const mapDispatchToProps = dispatch => ({
     dispatch(resetNewPost())
   },
 
-  validateAndCreatePost: values => dispatch(createPost(values)),
+  validateAndCreatePost: (values, callback) => dispatch(createPost(values, callback)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(reduxForm({
   form: 'PostsCreateForm',
   fields: ['title', 'categories', 'content'],
   validate,
-})(PostsCreate))
+})(withRouter(PostsCreate)))

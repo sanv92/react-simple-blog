@@ -1,11 +1,17 @@
 import React, { Component } from 'react'
 import { Field } from 'redux-form'
-import { Redirect } from 'react-router-dom'
 
 
 class PostsCreate extends Component {
   componentWillUnmount() {
     this.props.resetForm()
+  }
+
+  onSubmit(values) {
+    this.props.validateAndCreatePost(values, (response) => {
+      this.props.resetForm()
+      this.props.history.push(`/posts/${response.id}`)
+    })
   }
 
   renderField = ({ input, label, type, placeholder, meta: { touched, error }}) => (
@@ -19,31 +25,26 @@ class PostsCreate extends Component {
       </div>
       <hr />
     </div>
-  );
+  )
 
   renderError = (newPost) => {
-    if (newPost && newPost.error) {
+    if (newPost && newPost.error && newPost.error.message) {
       return (
         <div className="alert alert-danger">
-          { newPost ? newPost.error : '' }
+          { newPost ? newPost.error.message : '' }
         </div>
       )
     }
-  };
+  }
 
   render() {
     const { handleSubmit, submitting, newPost } = this.props
-
-    // Redirect to post if success and no error
-    if (newPost && newPost.post && !newPost.error) {
-      return <Redirect to={`/posts/${newPost.post.id}`} />
-    }
 
     return (
       <div>
         {this.renderError(newPost)}
 
-        <form onSubmit={handleSubmit(values => this.props.validateAndCreatePost(values))}>
+        <form onSubmit={handleSubmit(values => this.onSubmit(values))}>
           <div>
             <Field
               name="title"

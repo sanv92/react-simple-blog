@@ -1,7 +1,7 @@
-import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
+import React from 'react'
+import { BrowserRouter } from 'react-router-dom'
 
-import PrimaryLayout from 'components/layout';
+import PrimaryLayout from 'components/layout'
 
 
 const App = () => (

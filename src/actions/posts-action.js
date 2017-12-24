@@ -3,7 +3,7 @@ import * as types from 'constants/posts-action'
 
 
 const ROOT_URL = 'http://reduxblog.herokuapp.com/api'
-const API_KEY = '?key=diownf0ewcdw'
+const API_KEY = '?key=diownfx0ewcdw1'
 
 export const fetchPosts = () => (
   (dispatch) => {
@@ -62,7 +62,7 @@ export const resetActivePost = () => ({
 })
 
 
-export const createPost = values => (
+export const createPost = (values, callback) => (
   (dispatch) => {
     dispatch({
       type: types.CREATE_NEW_POST,
@@ -86,8 +86,16 @@ export const createPost = values => (
               type: types.SUCCESS_NEW_POST,
               payload: response.data,
             })
+
+            callback(response.data)
           }
         }, responseTimer)
+      })
+      .catch((error) => {
+        dispatch({
+          type: types.FAILURE_NEW_POST,
+          payload: error,
+        })
       })
   }
 )
