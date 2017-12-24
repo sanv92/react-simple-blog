@@ -3,7 +3,7 @@ import * as types from 'constants/posts-action'
 
 
 const ROOT_URL = 'http://reduxblog.herokuapp.com/api'
-const API_KEY = '?key=diownfx0ewcdw1'
+const API_KEY = '?key=diownf0ewcdw'
 
 export const fetchPosts = () => (
   (dispatch) => {
