@@ -40,22 +40,22 @@ const PrimaryLayout = () => (
           </div>
           <aside className="col-12 col-sm-4" role="complementary">
             <Slider animation="fade">
-              <img src="/dist/images/slides/animals.svg" alt="animals" />
-              <img src="/dist/images/slides/fish.svg" alt="fish" />
-              <img src="/dist/images/slides/landscape.svg" alt="landscape" />
-              <img src="/dist/images/slides/witch.svg" alt="witch" />
+              <img src="/images/slides/animals.svg" alt="animals" />
+              <img src="/images/slides/fish.svg" alt="fish" />
+              <img src="/images/slides/landscape.svg" alt="landscape" />
+              <img src="/images/slides/witch.svg" alt="witch" />
             </Slider>
             <Slider animation="fade">
-              <img src="/dist/images/slides/fish.svg" alt="fish" />
-              <img src="/dist/images/slides/landscape.svg" alt="landscape" />
-              <img src="/dist/images/slides/witch.svg" alt="witch" />
-              <img src="/dist/images/slides/animals.svg" alt="animals" />
+              <img src="/images/slides/fish.svg" alt="fish" />
+              <img src="/images/slides/landscape.svg" alt="landscape" />
+              <img src="/images/slides/witch.svg" alt="witch" />
+              <img src="/images/slides/animals.svg" alt="animals" />
             </Slider>
             <Slider animation="fade">
-              <img src="/dist/images/slides/landscape.svg" alt="landscape" />
-              <img src="/dist/images/slides/witch.svg" alt="witch" />
-              <img src="/dist/images/slides/animals.svg" alt="animals" />
-              <img src="/dist/images/slides/fish.svg" alt="fish" />
+              <img src="/images/slides/landscape.svg" alt="landscape" />
+              <img src="/images/slides/witch.svg" alt="witch" />
+              <img src="/images/slides/animals.svg" alt="animals" />
+              <img src="/images/slides/fish.svg" alt="fish" />
             </Slider>
           </aside>
         </div>

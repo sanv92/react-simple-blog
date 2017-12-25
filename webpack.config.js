@@ -1,68 +1,113 @@
-const path = require('path');
-const glob = require('glob');
-const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
+const {
+  LoaderOptionsPlugin,
+} = require('webpack')
 
-const staticSourcePath = path.join(__dirname, 'static/css');
-const sourcePath = path.join(__dirname, 'src');
+const { resolve } = require('path')
+const glob = require('glob')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
+
+
+const IMAGES = resolve(__dirname, './', 'style/images')
+const DIST = resolve(__dirname, './', 'dist')
+const SRC = resolve(__dirname, './', 'src')
+
+const extractCSS = new ExtractTextPlugin({
+  filename: 'main.css',
+  allChunks: false,
+})
 
 module.exports = {
-    entry: [
-        path.resolve(staticSourcePath, 'main.scss'),
-        path.resolve(sourcePath, 'index.js')
+  target: 'web',
+  profile: true,
+
+  entry: {
+    index: [
+      './src/index',
+      './style/css/main.scss',
     ],
+  },
 
-    output: {
-        path: path.join(__dirname, 'dist'),
-        publicPath: '/dist',
-        filename: 'bundle.js'
-    },
+  output: {
+    filename: 'bundle.js',
+    publicPath: '/',
+    path: DIST,
+    pathinfo: true,
+  },
 
-    resolve: {
-        extensions: ['.js', '.jsx'],
-        modules: [
-            sourcePath,
-            path.resolve(__dirname, 'node_modules')
-        ]
-    },
+  performance: {
+    hints: false,
+  },
 
-    plugins: [
-        new ExtractTextPlugin('[name].css', {
-            allChunks: true
+  resolve: {
+    extensions: ['.js', '.jsx'],
+    modules: [
+      SRC,
+      'node_modules',
+    ],
+  },
+
+  module: {
+    rules: [
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        use: [
+          'babel-loader',
+        ],
+        include: SRC,
+      },
+
+      {
+        test: /\.css$/,
+        use: extractCSS.extract({
+          fallback: 'style-loader',
+          use: [
+            {
+              loader: 'css-loader',
+            },
+          ],
         }),
-        new CopyWebpackPlugin([
-            {from:'static/images', to:'images'}
-        ]),
+      },
+
+      {
+        test: /\.scss$/,
+        use: extractCSS.extract({
+          fallback: 'style-loader',
+          use: [
+            {
+              loader: 'css-loader',
+            },
+            {
+              loader: 'sass-loader',
+              options: {
+                modules: true,
+                importLoaders: 1,
+                minimize: true,
+                sourceMap: true,
+              },
+            },
+          ],
+        }),
+      },
+
     ],
+  },
 
-    module: {
-        rules: [
-            {
-                test: /\.(js|jsx)$/,
-                exclude: /node_modules/,
-                use: [
-                    'babel-loader'
-                ],
-                include: sourcePath
-            },
-            {
-                test: /\.scss$/,
-                exclude: /node_modules/,
-                use: ExtractTextPlugin.extract({
-                    fallback: 'style-loader',
-                    use: [
-                        { loader: 'css-loader', options: { minimize: true } },
-                        'sass-loader'
-                    ]
-                })
-            },
-            { test: /\.md$/, loader: "html!markdown" },
-            { test: /\.json$/, loader: "json" },
-        ]
-    },
+  plugins: [
+    extractCSS,
 
-    devServer: {
-        historyApiFallback: true,
-    }
-};
+    new LoaderOptionsPlugin({
+      debug: true,
+      minimize: false,
+    }),
+
+    new CopyWebpackPlugin([
+      {from: IMAGES, to: 'images'},
+    ]),
+  ],
+
+  devServer: {
+    contentBase: resolve(__dirname, './', 'public'),
+  },
+}
