@@ -9,3 +9,9 @@
 > npm install
 > npm run start:dev
 ```
+
+#### Webpack
+```
+- npm run start:dev
+- npm run build
+```

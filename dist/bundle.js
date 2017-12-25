@@ -9597,15 +9597,14 @@ var classNamesShape = exports.classNamesShape = _propTypes2.default.oneOfType([_
 
 /***/ }),
 /* 145 */
-/*!***********************************************!*\
-  !*** multi ./src/index ./style/css/main.scss ***!
-  \***********************************************/
+/*!*************************!*\
+  !*** multi ./src/index ***!
+  \*************************/
 /*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! ./src/index */146);
-module.exports = __webpack_require__(/*! ./style/css/main.scss */420);
+module.exports = __webpack_require__(/*! ./src/index */146);
 
 
 /***/ }),
@@ -38821,6 +38820,8 @@ var _layout = __webpack_require__(/*! components/layout */ 377);
 
 var _layout2 = _interopRequireDefault(_layout);
 
+__webpack_require__(/*! styles/css/main.scss */ 420);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var App = function App() {
@@ -44390,9 +44391,9 @@ exports.default = Navigation;
 
 /***/ }),
 /* 420 */
-/*!*****************************!*\
-  !*** ./style/css/main.scss ***!
-  \*****************************/
+/*!**********************************!*\
+  !*** ./src/styles/css/main.scss ***!
+  \**********************************/
 /*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports) {
